@@ -18,6 +18,12 @@ An **agentic skill** that teaches your AI agent to time-travel through git histo
 
 ---
 
+## Traffic Analytics
+
+See [TRAFFIC_STATS.md](TRAFFIC_STATS.md) for setting up long-term traffic tracking (views, clones, referrers, stars, forks) beyond GitHub's 14-day limit using [jgehrcke/github-repo-stats](https://github.com/jgehrcke/github-repo-stats).
+
+---
+
 ## The Problem
 
 You paste an error trace into your AI agent. It scans the current code, confidently points to a line — but that line was rewritten *after* the crash. The actual bug was a missing null check that existed before yesterday's merge.
