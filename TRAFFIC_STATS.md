@@ -4,19 +4,10 @@ This repository uses **jgehrcke/github-repo-stats** for long-term traffic tracki
 
 ## Tracked Repositories
 
-This tracker currently monitors traffic for all my repositories:
 - MeherBhaskar/temporal-debug-skill
 - MeherBhaskar/agent-rigor
-- MeherBhaskar/agentic-api-agent
-- MeherBhaskar/api-mock-genie
 - MeherBhaskar/diffwhisperer
-- MeherBhaskar/agent-development-kit-crash-course
-- MeherBhaskar/hyperparameter-tuner
-- MeherBhaskar/mcp-server-basic
-- MeherBhaskar/mcp_server
 - MeherBhaskar/OptiMindTune
-- MeherBhaskar/ADK-Demo
-- MeherBhaskar/langfuse
 - MeherBhaskar/meherbhaskar.github.io
 
 ## Live Traffic Report
@@ -57,18 +48,18 @@ Create a separate repository to store the stats data (e.g., `temporal-debug-stat
 4. Save
 
 ### 5. Configure Tracked Repositories
-Edit `.github/workflows/repo-stats.yml` and modify the `additional-repos` input to list all repositories you want to track:
+Edit `.github/workflows/repo-stats.yml` and modify the `matrix.repository` array to list all repositories you want to track:
 
 ```yaml
-with:
-  repository: MeherBhaskar/temporal-debug-skill  # primary repo (required by action)
-  ghtoken: ${{ secrets.GHRS_GITHUB_API_TOKEN }}
-  additional-repos: |
-    MeherBhaskar/temporal-debug-skill
-    MeherBhaskar/agent-rigor
-    MeherBhaskar/agentic-api-api
-    # Add more repos here, one per line
+strategy:
+  matrix:
+    repository:
+      - MeherBhaskar/temporal-debug-skill
+      - MeherBhaskar/agent-rigor
+      # Add more repos here
 ```
+
+The workflow uses `fail-fast: false` and `continue-on-error: true` so one failing repo doesn't stop the others.
 
 ### 6. Run the Workflow
 The workflow runs daily at 23:00 UTC automatically, or trigger manually:
@@ -81,9 +72,7 @@ Once the workflow runs and GitHub Pages is enabled, view the traffic report at:
 
 ## Multi-Repository Support
 
-To add more repositories, edit `.github/workflows/repo-stats.yml` and add to the `additional-repos` input (one repo per line, format: `owner/repo`).
-
-The primary `repository` field is required by the action but only the first repo's data will be shown in the main charts. All repos in `additional-repos` will have their data collected and stored.
+To add more repositories, edit `.github/workflows/repo-stats.yml` and add to the `matrix.repository` array (one repo per line, format: `owner/repo`).
 
 ## Manual Stats Collection
 

@@ -19,17 +19,11 @@ jobs:
         repository:
           - MeherBhaskar/temporal-debug-skill
           - MeherBhaskar/agent-rigor
-          - MeherBhaskar/agentic-api-agent
-          - MeherBhaskar/api-mock-genie
           - MeherBhaskar/diffwhisperer
-          - MeherBhaskar/agent-development-kit-crash-course
-          - MeherBhaskar/hyperparameter-tuner
-          - MeherBhaskar/mcp-server-basic
-          - MeherBhaskar/mcp_server
           - MeherBhaskar/OptiMindTune
-          - MeherBhaskar/ADK-Demo
-          - MeherBhaskar/langfuse
           - MeherBhaskar/meherbhaskar.github.io
+      fail-fast: false
+    continue-on-error: true
     steps:
       - name: Capture traffic stats for ${{ matrix.repository }}
         uses: jgehrcke/github-repo-stats@RELEASE
