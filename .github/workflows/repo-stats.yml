@@ -14,6 +14,9 @@ jobs:
   stats:
     name: Capture GitHub Traffic Stats
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,6 +26,8 @@ jobs:
       - name: Create data directories
         run: |
           mkdir -p ghrs-data newsnapshots
+          echo "Directories created in $(pwd)"
+          ls -la
 
       - name: Capture traffic stats
         uses: jgehrcke/github-repo-stats@main
@@ -30,11 +35,6 @@ jobs:
           repository: MeherBhaskar/temporal-debug-skill
           ghtoken: ${{ secrets.GHRS_GITHUB_API_TOKEN }}
           databranch: github-repo-stats
-          # Optional: track additional repos (for microservices)
-          # additional-repos: |
-          #   MeherBhaskar/temporal-debug-skill
-          #   owner/repo-2
-          #   owner/repo-3
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
